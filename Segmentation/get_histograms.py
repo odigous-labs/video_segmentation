@@ -1,7 +1,9 @@
 import cv2
 
-#this function
+
+#this function will return 3 arrays as histograms of a given image
 def get_histograms(file_path):
+
     #String file_name - path for the image file we need to get the oolor histogram
     img = cv2.imread(file_path)
     blue_histr = cv2.calcHist([img],[0],None,[256],[0,256])

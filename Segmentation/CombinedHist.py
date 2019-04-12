@@ -1,6 +1,9 @@
 import numpy as np
 
+#Thia class can be used as the data structure to store all the histograms in a single #image
+
 class CombinedHist:
+
     # arrrays to store red,green,blue histogram components
     blue_hist= np.zeros((256,1))
     green_hist= np.zeros((256,1))

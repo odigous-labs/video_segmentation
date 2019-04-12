@@ -1,8 +1,9 @@
 from queue import *
-import CombinedHist
+from Segmentation import CombinedHist
 import numpy as np
 
 
+#Thia class is a queuse of histograms
 class HistQueue:
     size = 0
     added_elements = 0
@@ -45,9 +46,9 @@ class HistQueue:
             avg_blue_histr = self.total_blue_histr/self.added_elements
             avg_green_histr = self.total_green_histr / self.added_elements
             avg_red_histr = self.total_red_histr / self.added_elements
-            return CombinedHist.CombinedHist(avg_blue_histr,avg_green_histr,avg_red_histr)
+            return CombinedHist.CombinedHist(avg_blue_histr, avg_green_histr, avg_red_histr)
         else:
-            return CombinedHist.CombinedHist(np.zeros((256,1),dtype = np.float32),np.zeros((256,1),dtype = np.float32),np.zeros((256,1),dtype = np.float32))
+            return CombinedHist.CombinedHist(np.zeros((256, 1), dtype = np.float32), np.zeros((256, 1), dtype = np.float32), np.zeros((256, 1), dtype = np.float32))
 
     #this will increase the total values for a given hist
     def increaseTotalValues(self,cmbHist):
