@@ -53,7 +53,7 @@ class Segment:
 
         shot_boundaries_dict =self.detect_boundaries(frames_less_than_threshold,self.sampling_rate)
         shot_frames =self.detect_frame(shot_boundaries_dict)
-
+        smoothed_shot_boundaries = self.smooth_boundaries(shot_frames)
         # value = np.percentile(y, 10)
         # median = np.median(y)
         # minimum = np.amin(y)
@@ -114,6 +114,28 @@ class Segment:
             dict_of_shots[key] = min
         return dict_of_shots
 
+    def smooth_boundaries(self,shot_frames):
+        frames_list = []
+        current_frame = shot_frames[next(iter(shot_frames))]
+        temp_list_to_neighboring_frames = [current_frame]
+        for key in shot_frames:
+            frame_to_compare = shot_frames[key]
+            if (frame_to_compare.get_frame_no() - current_frame.get_frame_no()) < self.sampling_rate:
+                temp_list_to_neighboring_frames.append(frame_to_compare)
+            else:
+                minimum_frame = self.get_grame_with_minimum_correlation_value(temp_list_to_neighboring_frames)
+                frames_list.append(minimum_frame)
+                temp_list_to_neighboring_frames = [frame_to_compare]
+                current_frame = frame_to_compare
+        minimum_frame = self.get_grame_with_minimum_correlation_value(temp_list_to_neighboring_frames)
+        frames_list.append(minimum_frame)
+        return frames_list
 
+    # retufn the frame with the minimum correlation value in a given list of frames
+    def get_grame_with_minimum_correlation_value(self,list_of_frames):
+        minimum_frame =list_of_frames[0]
+        for frame in list_of_frames:
+            if minimum_frame.get_correlation_val()> frame.get_correlation_val():
+                minimum_frame = frame
 
-
+        return minimum_frame
