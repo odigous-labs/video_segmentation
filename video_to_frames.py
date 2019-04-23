@@ -51,7 +51,8 @@ def get_frames(video_input_path, frame_output_path):
         print("Invalid input video to capture. Location or the video not exist.")
 
 def run():
-    path = 'D:\Campus\FYP\SumMe\\videos\\Bike Polo.mp4'
+    path = input("Enter the path to video:")
+    #path = 'D:\Campus\FYP\\SumMe\\anni006.mpg'
     #video_input_path = os.path.join("D:","Campus","FYP","SumMe",)
     video_input_path = path
     frame_output_path = "generated_frames/"

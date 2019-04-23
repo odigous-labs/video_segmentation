@@ -54,22 +54,22 @@ class Segment:
             print(i)
         fig = plt.figure(figsize=(18, 5))
         y = np.add(np.add(self.y_red, self.y_green), self.y_blue) / 3
-        frames_less_than_threshold = self.seperate_frames_forward(summed_hist=y, threshold=5)
+        frames_less_than_threshold = self.seperate_frames_forward(summed_hist=y, threshold=7)
 
-        #shot_boundaries_dict =self.detect_boundaries_forward(frames_less_than_threshold,self.sampling_rate)
-        #shot_frames =self.detect_frame(shot_boundaries_dict)
-        #smoothed_shot_boundaries = self.smooth_boundaries_forward(shot_frames)
-        # value = np.percentile(y, 10)
-        # median = np.median(y)
-        # minimum = np.amin(y)
-        # y_sorted = np.sort(y)
-        # getting_index = y_sorted[8]
-        # print("quartile" + str(value))
-        # print("median" + str(median))
-        # plt.plot(self.x, y, color='k')
-        # plt.axhline(y=value, color='r', linestyle='-')
-        # plt.xticks(np.arange(min(self.x), max(self.x) + 1, 100.0))
-        # plt.show()
+        shot_boundaries_dict =self.detect_boundaries_forward(frames_less_than_threshold,self.sampling_rate)
+        shot_frames =self.detect_frame(shot_boundaries_dict)
+        smoothed_shot_boundaries = self.smooth_boundaries_forward(shot_frames)
+        value = np.percentile(y, 10)
+        median = np.median(y)
+        minimum = np.amin(y)
+        y_sorted = np.sort(y)
+        getting_index = y_sorted[8]
+        print("quartile" + str(value))
+        print("median" + str(median))
+        plt.plot(self.x, y, color='k')
+        plt.axhline(y=value, color='r', linestyle='-')
+        plt.xticks(np.arange(min(self.x), max(self.x) + 1, 100.0))
+        plt.show()
         #return smoothed_shot_boundaries
         return frames_less_than_threshold
 
