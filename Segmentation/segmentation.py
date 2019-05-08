@@ -25,6 +25,8 @@ def compare(current_hist,frame_no):
 
     #print(red_result)
 
+
+
 for i in range (0,4000):
     blue_histr, green_histr, red_histr = get_histograms.get_histograms('generated_frames/frame' + str(i) + ".jpg")
     hist_of_image = CombinedHist.CombinedHist(blue_histr, green_histr, red_histr)

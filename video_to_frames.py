@@ -35,8 +35,10 @@ def get_frames(video_input_path, frame_output_path):
         while(return_status):
             # Saving the current frame's image as a jpg file
             frame_location = frame_output_path+"frame" + str(current_frame) + ".jpg"
-            print ("Creating..." + frame_location)
-            cv2.imwrite(frame_location, frame)
+            if(current_frame%100 == 0):
+                print ("Creating..." + frame_location)
+            resized = cv2.resize(frame, (256,256), interpolation=cv2.INTER_AREA)
+            cv2.imwrite(frame_location, resized,[int(cv2.IMWRITE_JPEG_QUALITY), 20])
             # Increasing the current frame value for the next frame
             current_frame += 1
             # Capture frame-by-frame
@@ -49,7 +51,8 @@ def get_frames(video_input_path, frame_output_path):
         print("Invalid input video to capture. Location or the video not exist.")
 
 def run():
-    path = 'D:\Campus\FYP\SumMe\\videos\\notre_dame.mp4'
+    path = input("Enter the path to video:")
+    #path = 'D:\Campus\FYP\\SumMe\\anni006.mpg'
     #video_input_path = os.path.join("D:","Campus","FYP","SumMe",)
     video_input_path = path
     frame_output_path = "generated_frames/"
