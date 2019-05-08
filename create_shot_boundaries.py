@@ -1,16 +1,16 @@
-from Segmentation import Segment
 import numpy as np
-from matplotlib import pyplot as plt
 import scipy.cluster.hierarchy as hcluster
+from matplotlib import pyplot as plt
 
+from Segmentation import ColorHistogram
 
 
 def run(path_to_frames_directory):
-    segment1 = Segment.Segment(path_to_frames_directory=path_to_frames_directory,
-                               sampling_rate=25)
+    segment1 = ColorHistogram.ColorHistogram(path_to_frames_directory=path_to_frames_directory,
+                                             sampling_rate=25)
     forward_dict = segment1.get_shots_forward()
-    segment2 = Segment.Segment(path_to_frames_directory=path_to_frames_directory,
-                               sampling_rate=25)
+    segment2 = ColorHistogram.ColorHistogram(path_to_frames_directory=path_to_frames_directory,
+                                             sampling_rate=25)
     backward_dict = segment2.get_shots_backward()
 
     data = []
