@@ -46,8 +46,12 @@ class MatrixDistance:
     # returns each channel as a matrix of a given frame
     def getImage(self, frame_number):
         image = cv2.imread(self.path_to_frames_directory + '/frame' + str(frame_number) + ".jpg")
-
-        return cv2.split(image)
+        # resized_image  = cv2.resize(image,(5,5))
+        chnl0, chnl1, chnl2 = cv2.split(image)
+        chnl0 = chnl0.astype('int32')
+        chnl1 = chnl1.astype('int32')
+        chnl2 = chnl2.astype('int32')
+        return chnl0, chnl1, chnl2
 
     def compareChannels(self, prev_channel_0, prev_channel_1, prev_channel_2, curr_channel_0, curr_channel_1,
                         curr_channel_2):
