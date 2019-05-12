@@ -57,7 +57,7 @@ class ColorHistogram:
 
     def get_shots_backward(self):
         number_of_files = len(self.list_of_files)
-        for i in range(number_of_files-1,0,-1):
+        for i in range(number_of_files - 1, -1, -1):
             blue_histr, green_histr, red_histr = get_histograms.get_histograms(
                 self.path_to_frames_directory + '/frame' + str(i) + ".jpg")
             hist_of_image = CombinedHist.CombinedHist(blue_histr, green_histr, red_histr)
